@@ -1,0 +1,48 @@
+# Proposta: Novo Agent database-specialist
+
+## Metadados
+
+- **Name**: database-specialist
+- **Version**: 1.0.0
+- **Description**: Agent especialista em otimização de banco de dados, schema review e migrações
+- **Owner**: developer
+- **Status**: proposal
+
+## Justificativa
+
+- **Volume de tarefas**: 17 tasks related to database optimization detected
+- **Sobrecarga**: Existing developer agent overloaded (14/20 tasks DB-related)
+- **Dominio**: Mesmas ferramentas (SQL, database tools) usadas consistentemente
+- **Tipo de decisão**: Mesmos tipos de decisão (query optimization, schema review) repetidos
+
+## Responsibilities
+
+- query optimization
+- schema review
+- migration analysis
+
+## Required Skills
+
+- sql
+- database-performance
+
+## Required Tools
+
+- database
+
+## Reason
+
+- "17 tasks related to database optimization"
+- "Existing developer agent overloaded"
+
+## Risk Level
+
+HIGH — Requires CEO/humano approval before agent creation
+
+## Approval Required
+
+L1 CEO + GIT COMMIT → Novo agent criado em agents/database-specialist/
+
+## Changelog
+
+- **1.0.0**: Proposta submetida

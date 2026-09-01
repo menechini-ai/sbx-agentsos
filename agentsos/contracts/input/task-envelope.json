@@ -1,0 +1,63 @@
+{
+  "task": {
+    "id": "TASK-2026-0001",
+    "parent_id": "TASK-2026-0000",
+
+    "sender": {
+      "agent": "ceo",
+      "level": 1
+    },
+
+    "receiver": {
+      "agent": "developer",
+      "level": 2
+    },
+
+    "objective": {
+      "primary": "Implementar autenticação"
+    },
+
+    "context": {
+      "repository": "project",
+      "branch": "feature/auth"
+    },
+
+    "constraints": [
+      "Não alterar arquitetura global",
+      "Não adicionar dependências sem aprovação",
+      "Manter compatibilidade com API atual"
+    ],
+
+    "resources": {
+      "skills": [
+        "authentication",
+        "testing"
+      ],
+
+      "tools": [
+        "github",
+        "filesystem"
+      ]
+    },
+
+    "memory": {
+      "read": [
+        "decisions/authentication.md"
+      ]
+    },
+
+    "expected_output": {
+      "type": "implementation_report",
+      "required": [
+        "status",
+        "changes",
+        "tests",
+        "risks"
+      ]
+    },
+
+    "deadline": {
+      "priority": "high"
+    }
+  }
+}

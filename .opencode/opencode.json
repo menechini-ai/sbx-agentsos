@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": ["superpowers@git+https://github.com/obra/superpowers.git"],
+  "provider": {
+    "9router": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "9router",
+      "options": {
+        "baseURL": "http://localhost:20128/v1",
+        "apiKey": "sk-1592f4d063b197d2-7dc88p-51440995"
+      },
+      "models": {
+        "claude-sonnet-4-6": {
+          "name": "claude-sonnet-4-6",
+          "type": "completion",
+          "maxTokens": 32000
+        },
+        "claude-haiku-4-5-20251001": {
+          "name": "claude-haiku-4-5-20251001",
+          "type": "completion",
+          "maxTokens": 32000
+        }
+      }
+    }
+  }
+}

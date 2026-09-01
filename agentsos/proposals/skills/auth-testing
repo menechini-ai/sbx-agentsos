@@ -1,0 +1,65 @@
+# Proposta: Skill auth-testing
+
+## Metadados
+
+- **Name**: auth-testing
+- **Version**: 1.0.0
+- **Description**: Skill de testes de autenticação — validar flows de autenticação, testes de segurança
+- **Owner**: developer
+- **Status**: proposal
+
+## Justificativa
+
+- **Pattern detectado**: Padrão de "JWT expiration configuration" repetido em 4 tarefas
+- **Ocorrências**: 4 tasks com mesmo problema
+- **Contexto**: Múltiplos agentes implementando autenticação sem skill padronizada
+- **Impacto**: Risco de configuração incorreta de tokens em produção
+
+## Inputs
+
+- `task_id` — ID da tarefa referenciando o contrato INPUT
+- `api_spec` — Spec da API de autenticação
+- `endpoint` — Endpoint a ser testado
+
+## Outputs
+
+- `test_report` — Relatório de testes de autenticação
+
+## Dependencies
+
+- `http-client` — Para testes de API
+- `filesystem` — Para leitura/escrita de arquivos de teste
+
+## Tools
+
+- `github.read` — Para ler código de auth existente
+- `github.write` — Para criar arquivos de teste
+- `filesystem.read` — Para ler configs de auth
+- `filesystem.write` — Para escrever testes
+
+## Procedure
+
+1. **Ler task envelope**: Consultar constraints e boundaries da GOVERNANCE.md
+2. **Explorar código existente**: Entender auth flow atual
+3. **Criar testes**: Implementar testes de login, token refresh, expiração
+4. **Validar**: Cross-check com AI memory e security best practices
+5. **Entregar**: Produzir test_report com status, risks, assumptions
+
+## Validation Criteria
+
+- Todos os flows de auth testados (login, refresh, expiração)
+- Risques identificados e documentados
+- Assumptions documentadas
+- Code conventions seguidas
+
+## Risk Level
+
+MEDIUM — Requires L1 CEO review before activation
+
+## Approval Required
+
+L1 CEO review → GIT COMMIT → Skill activation
+
+## Changelog
+
+- **1.0.0**: Proposta submetida

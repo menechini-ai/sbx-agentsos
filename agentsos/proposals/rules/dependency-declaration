@@ -1,0 +1,33 @@
+# Proposta: Rule dependency-declaration
+
+## Metadados
+
+- **Rule**: dependency-declaration
+- **Version**: 1.0.0
+- **Description**: Rule que proíbe agentes de adicionar dependências sem declará-las
+- **Owner**: governance
+- **Status**: proposal
+
+## Justificativa
+
+- **Impacto sistêmico**: 3 tasks afetadas por dependencies não declaradas
+- **Padrão de falha**: Agents modificaram dependências sem aviso prévio
+- **Consequências**: Risco de ambiente instável, builds quebrados, dependências não trackeadas
+
+## Fluxo
+
+1. **Impact analysis**: 3 tasks com problema identificado
+2. **Rule candidate**: "Agents MUST NOT add dependencies without declaring the dependency change."
+3. **Approval**: L1 CEO review → approved
+4. **Result**: Rule adicionada a developer/AGENTS.md
+   → Commit: fix(rule): add dependency declaration rule
+
+## Integration with GOVERNANCE.md
+
+- Rule added a AGENTS.md (developer department)
+- Commit semântico: fix(rule): add dependency declaration rule
+- Risk level: HIGH — Aprovação CEO exigida
+
+## Changelog
+
+- **1.0.0**: Proposta submetida

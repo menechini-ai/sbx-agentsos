@@ -1,0 +1,45 @@
+{
+  "handoff": {
+    "from": {
+      "agent": "{{from_agent}}",
+      "level": {{from_level}}
+    },
+
+    "to": {
+      "agent": "{{to_agent}}",
+      "level": {{to_level}}
+    },
+
+    "task_id": "{{task_id}}",
+
+    "completed": [
+      "{{completed_1}}",
+      "{{completed_2}}"
+    ],
+
+    "pending": [
+      "{{pending_1}}",
+      "{{pending_2}}"
+    ],
+
+    "artifacts": [
+      "{{artifact_1}}",
+      "{{artifact_2}}"
+    ],
+
+    "risks": [
+      "{{risk_1}}",
+      "{{risk_2}}"
+    ],
+
+    "instructions": [
+      "{{instruction_1}}",
+      "{{instruction_2}}"
+    ],
+
+    "expected": [
+      "{{expected_1}}",
+      "{{expected_2}}"
+    ]
+  }
+}

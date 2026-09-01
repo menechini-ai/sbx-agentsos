@@ -1,0 +1,62 @@
+{
+  "task": {
+    "id": "TASK-2026-XXXX",
+    "parent_id": "TASK-2026-XXXX",
+
+    "sender": {
+      "agent": "{{sender_agent}}",
+      "level": {{sender_level}}
+    },
+
+    "receiver": {
+      "agent": "{{receiver_agent}}",
+      "level": {{receiver_level}}
+    },
+
+    "objective": {
+      "primary": "{{objective_primary}}"
+    },
+
+    "context": {
+      "repository": "{{repository}}",
+      "branch": "{{branch}}"
+    },
+
+    "constraints": [
+      "{{constraint_1}}",
+      "{{constraint_2}}",
+      "{{constraint_3}}"
+    ],
+
+    "resources": {
+      "skills": [
+        "{{skill_1}}",
+        "{{skill_2}}"
+      ],
+
+      "tools": [
+        "{{tool_1}}",
+        "{{tool_2}}"
+      ]
+    },
+
+    "memory": {
+      "read": [
+        "{{memory_reference_1}}"
+      ]
+    },
+
+    "expected_output": {
+      "type": "{{output_type}}",
+      "required": [
+        "{{required_1}}",
+        "{{required_2}}",
+        "{{required_3}}"
+      ]
+    },
+
+    "deadline": {
+      "priority": "{{priority_level}}"
+    }
+  }
+}

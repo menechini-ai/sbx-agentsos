@@ -1,0 +1,54 @@
+{
+  "result": {
+    "task_id": "TASK-2026-0001",
+
+    "status": "completed",
+
+    "summary": [
+      "Autenticação implementada",
+      "Testes adicionados"
+    ],
+
+    "changes": {
+      "files": [
+        "src/auth/login.ts",
+        "tests/auth/login.test.ts"
+      ]
+    },
+
+    "validation": {
+      "tests": {
+        "status": "passed",
+        "total": 42
+      }
+    },
+
+    "risks": [
+      "JWT expiration ainda usa configuração padrão"
+    ],
+
+    "assumptions": [
+      "API existente deve permanecer compatível"
+    ],
+
+    "memory_candidates": [
+      {
+        "type": "learning",
+        "description": "Projeto utiliza refresh token de 7 dias"
+      }
+    ],
+
+    "improvement_candidates": [
+      {
+        "type": "skill",
+        "name": "auth-testing",
+        "reason": "Padrão repetido em 4 tarefas"
+      }
+    ],
+
+    "handoff": {
+      "next_agent": "qa",
+      "required": true
+    }
+  }
+}

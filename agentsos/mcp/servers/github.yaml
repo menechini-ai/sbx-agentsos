@@ -1,0 +1,55 @@
+# MCP Server Configuration: GitHub
+
+## Server: GitHub
+
+### Descrição
+Integração GitHub para leitura/escrita de repositórios, issues, PRs e código.
+
+### Configuração
+
+```yaml
+name: github
+version: 1.0.0
+description: GitHub integration para leitura/escrita de repositórios
+
+tools:
+  github.read:
+    description: "Ler issues, PRs, código, commits"
+    allowed_levels: [L0, L1, L2, L3]
+    denied_operations:
+      - production.deploy
+      - secrets.export
+  
+  github.write:
+    description: "Criar/modificar issues, PRs, branches, commits"
+    allowed_levels: [L0, L1, L2, L3]
+    denied_operations:
+      - production.deploy
+      - secrets.export
+      - force_push
+```
+
+### Políticas de Uso
+
+- **L0 - Governance**: Acesso total — pode modificar configurações, criar repositórios
+- **L1 - CEO**: Acesso total — pode aprovar proposals, modificar configurações
+- **L2 - Department Agent**: Acesso restrito — pode ler/escrit no scope do departamento
+- **L3 - Specialist Agent**: Acesso especializado — pode operar dentro do scope L3
+- **L4 - Subagent**: Acesso limitado — apenas comandos designados no task envelope
+- **L5 - Tool**: Apenas operações definidas em mcp/policies/
+
+### Command Hardening (Self-Healing Paradox Prevention)
+
+Comandos bloqueados por segurança:
+
+- `pip install`, `npm install`, `yarn add` — adicionar dependências sem aprovação
+- `rm -rf`, `rm -r` — remoção recursiva
+- `chmod 777`, `chown` — mudança de permissões
+- `curl | bash`, `wget | sh` — execução de scripts remotos
+
+### Integração com GOVERNANCE.md
+
+- Baseado em GOVERNANCE.md §01 (Matriz de Autorização ✅⚠️🔐)
+- Baseado em guardrails/global/tools.md (Tool Usage)
+- Baseado em guardrails/global/change-risk-levels.md (MCP permissions = HIGH risk)
+- Command hardening previne auto-corrigir ambiente de forma perigosa
