@@ -1,11 +1,10 @@
 ---
 name: agent-os
-description: Agent OS - Arquitetura modular de agentes de IA com governança formal, memória persistente e habilidades reutilizáveis. Sistema SRE/DevOps com BMAD integration e governance L0-L5.
+description: Agent OS - Arquitetura modular de agentes de IA com governança formal, memória persistente e habilidades reutilizáveis. Sistema SRE/DevOps com modular integration e governance L0-L5.
 tags:
   - agent-os
   - governance
   - sre
-  - bmad
   - delivery-loop
   - skills
 ---

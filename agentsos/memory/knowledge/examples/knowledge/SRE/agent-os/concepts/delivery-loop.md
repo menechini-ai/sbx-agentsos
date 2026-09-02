@@ -5,7 +5,6 @@ type: concept
 domain: agent-os
 tags:
   - delivery-loop
-  - bmad
   - clarify
   - plan
   - build
@@ -13,7 +12,6 @@ tags:
   - learn
 aliases:
   - loop de delivery
-  - bmad workflow
 status: active
 version: "1.0.0"
 created: 2026-09-02
@@ -63,9 +61,9 @@ Fornecer estrutura consistente para todas as mudanças, desde hotfixes rápidos 
 Clarify → Plan → Build → Verify → Learn
   PM      Arch    Dev     QA/SRE    All
            │
-           ├─ Quick: Minimal planning
-           ├─ Standard: Stories + sprint
-           └─ Full: PRD + architecture + sprint
+            ├─ Quick: Minimal planning
+            ├─ Standard: Stories + sprint
+            └─ Full: PRD + architecture + sprint
 ```
 
 ## Usage
@@ -80,6 +78,7 @@ Nova feature request:
 ```
 
 ## Relationships
+
 - [[agent-os-architecture]] - Estrutura do sistema
 - [[agent-os-governance]] - Regras de governança
 
