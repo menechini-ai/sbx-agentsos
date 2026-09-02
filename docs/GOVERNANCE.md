@@ -47,15 +47,11 @@ project/
 │   └── ...
 │
 ├── memory/
-│   ├── ai-memory/         # Infraestrutura externa (ai-memory com wiki markdown + SQLite)
-│   │   ├── wiki/          # Fonte de verdade Markdown versionado em Git
-│   │   ├── db/            # Índice SQLite derivado
-│   │   ├── sessions/      # Logs de sessão (handoff)
-│   │   └── decisions/     # Páginas de decisão estruturada
-│   ├── policies/          # Políticas de promoção Memory→Skill→Rule→Agent
-│   ├── decisions/         # Decisões arquiteturais registradas
-│   ├── learnings/         # Aprendizados episódicos (não promovidos automaticamente)
-│   └── candidates/        # Candidatos a skill/rule/agent (awaiting review)
+│   ├── knowledge/       # Base de conhecimento (Obsidian-style, skill-kwonledge)
+│   │   └── examples/knowledge/  # Notas por categoria (IaC, DevOps, AI, SRE)
+│   ├── sessions/        # Logs de sessão (flat, por data)
+│   ├── candidates/      # Learning candidates aguardando review
+│   └── policies/        # Políticas de promoção Memory→Skill→Rule→Agent
 │
 ├── contracts/
 │   ├── input/             # task-envelope.md (sender, receiver, objective, constraints, resources, expected_output, deadline)
@@ -115,25 +111,26 @@ SKILL.md
     ↓
 "COMO EXECUTO UMA TAREFA"
 
-ai-memory
-    ↓
+knowledge/
+     ↓
 "O QUE EU APRENDI"
 
 work/
-    ↓
+     ↓
 "O QUE ESTOU PRODUZINDO"
 
 docs/
-    ↓
+     ↓
 "COMO O SISTEMA FUNCIONA"
 ```
 
 ### Regra da Fonte de Verdade Única
 
-Não duplicar lógica de memória. O ai-memory já implementa:
-- Wiki Markdown versionado em Git (fonte de verdade)
-- SQLite como índice derivado (retrieval, busca textual)
-- Sessões, observações, handoffs
+Não duplicar lógica de memória. O knowledge base (skill-kwonledge) já implementa:
+- Notas Obsidian-style com YAML frontmatter (fonte de verdade)
+- Organização por categorias (IaC, DevOps, AI, SRE)
+- Deduplication automática via scripts
+- Session logs em `memory/sessions/` (flat, por data)
 
 **Proibido criar sistema paralelo:**
 ```
@@ -144,14 +141,14 @@ memory/
 └── handoffs/
 ```
 
-Essas responsabilidades são do ai-memory.
+Essas responsabilidades são do knowledge base e memory/sessions/.
 
 ### Referências aos Arquivos Existentes
 
 | Arquivo | Conteúdo | Relevância |
 |---------|----------|------------|
-| `agentsos/001.md` | Visão geral, filosofia, 25 fases, integração ai-memory | Estrutura de pastos + filosofia |
-| `agentsos/002.md` | Memory manager, models, store, retrieval, embeddings | Políticas de memória (seção 02) |
+| `agentsos/001.md` | Visão geral, filosofia, 25 fases, integração knowledge base | Estrutura de pastos + filosofia |
+| `agentsos/002.md` | Knowledge manager, models, store, retrieval | Políticas de memória (seção 02) |
 | `agentsos/003.md` | CEO coordination, AGENTS.md templates, skills catalogação | Templates de agents/skills |
 | `agentsos/004.md` | Guardrails, contracts, hierarquia, delegation flow | Guardrails + matriz de autorização |
 | `docs/AGENT-ARCHITECTURE.md` | Princípios resumidos (26 seções) | Consolidação de ideias gerais |
@@ -370,7 +367,7 @@ Três tipos de agency problems que escalam com complexidade cognitiva:
 Fluxo com gates de revisão por nível de risco:
 
 ```
-Wiki (ai-memory)
+Knowledge (skill-kwonledge)
     │
     ▼ (trigger: repeated pattern detected, minimum 3 occurrences)
 Candidate (memory/candidates/)
@@ -630,6 +627,52 @@ A camada específica do runtime deve ficar separada da arquitetura dos agentes.
 | [CLAW-HCG-Framework](https://github.com/sztomyan-dotcom/CLAW-HCG-Framework) | 4-layer guards, command hardening, gated evolution |
 | [PA-Agent](https://github.com/edmundpokuadu-eng/PA-Agent) | 3-tier hierarchy, commitment gates, agency problems |
 
+### 02.13. Delivery Loop (BMAD Integration)
+
+O Agent OS adota o **BMAD Delivery Loop** como workflow padrão para execução de tarefas, garantindo processo right-sized (dimensionado à complexidade) e contexto durável.
+
+#### Loop Principal
+
+```
+Clarify → Plan → Build → Verify → Learn
+   ↑                                        │
+   └────────────────────────────────────────┘
+   (Learn alimenta próximo Clarify/Plan)
+```
+
+#### Planning Paths (Right-Sized)
+
+| Path | Trigger | Fases | Artefatos | Tempo Típico |
+|------|---------|-------|-----------|--------------|
+| **Quick** | Requisitos claros, <2h, LOW risk | → Build direto | Nenhum (task envelope direto) | < 2h |
+| **Standard** | Feature média, 2-8h, MEDIUM risk | Brief → PRD → Arch → Stories | Brief, PRD, Tech Spec, Stories, Sprint Plan | 2-8h |
+| **Full** | Complexo, >8h, HIGH risk, alta incerteza | Research → Brief → PRD → Arch → Full Stories | Research, Brief, PRD, Tech Spec, ADRs, Stories, Multi-sprint Plan | > 8h |
+
+#### Fase Details
+
+| Fase | Owner | Skills | Artefatos | Exit Criteria |
+|------|-------|--------|-----------|---------------|
+| **Clarify** | PM | `brainstorming`, `brief-creation` | Brief | Stakeholders aligned |
+| **Plan** | PM + Arquiteto | `prd-writing`, `tech-spec`, `adr-writing`, `sprint-planning` | PRD, Tech Spec, ADRs, Stories, Sprint Plan | CEO approval (se HIGH risk) |
+| **Build** | Dev + SRE | `agentos-build`, `dev-story`, `pipeline-yaml`, `cluster-setup` | Code, Tests, Infra | Tests pass, QA gate |
+| **Verify** | QA + SRE | `qa-gate`, `test-planning`, `monitor-setup` | Test Report, Monitor Status | All gates green |
+| **Learn** | CEO + All | `retrospective` | Retrospective, Action Items | Actions committed |
+
+#### Regras do Loop
+
+1. **Right-Sized**: Escolha o path baseado em clareza, escopo e risco — não use Full para tarefas simples.
+2. **Durable Context**: Artefatos (Brief, PRD, Tech Spec, ADRs) são a fonte de verdade — não reexplique decisões.
+3. **Specialized Perspectives**: Cada fase usa a expertise apropriada (PM, Architect, Dev, QA, SRE).
+4. **One Delivery Path**: Clarify → Plan → Build → Verify → Learn é o único caminho — não pule fases no Standard/Full.
+5. **Learn → Plan Feedback**: Retrospective gera action items e memory candidates que alimentam o próximo ciclo.
+6. **Existing Codebase**: Para codebases herdados, execute `workflows/existing-codebase/` antes de entrar no loop.
+
+#### Referência
+
+- `docs/plan/choose-a-planning-path.md` — Guia completo de escolha de path
+- `agentsos/templates/` — Templates de todos os artefatos
+- `agentsos/workflows/` — Workflows por fase
+
 ---
 
 ## Apêndice A. Glossário
@@ -643,7 +686,7 @@ A camada específica do runtime deve ficar separada da arquitetura dos agentes.
 | CEO/Principal | Agente L1 orquestrador responsável por delegação e coordenação |
 | Governance | Nível L0 com autoridade máxima sobre regras, hierarquia e políticas |
 | Skill | Capacidade operacional reutilizável documentada em SKILL.md |
-| Memory | Conhecimento persistente armazenado em ai-memory (wiki markdown + SQLite) |
+| Memory | Conhecimento persistente armazenado em knowledge base (skill-kwonledge, Obsidian-style) |
 | Candidate | Item em `memory/candidates/` aguardando promoção (skill/rule/agent) |
 | Contract INPUT | Envelope estruturado enviando tarefa de um agente para outro |
 | Contract OUTPUT | Envelope estruturado retornando resultado de uma tarefa |
@@ -660,4 +703,4 @@ A camada específica do runtime deve ficar separada da arquitetura dos agentes.
 
 | Data | Decisão | Contexto | Consequências |
 |------|---------|----------|---------------|
-| 2026-09-01 | Criação de GOVERNANCE.md | Necessidade de camada formal de governança acima de AGENTS.md/SKILL.md/ai-memory | Define L0-L5, matriz de autorização, políticas de promoção controlada |
+| 2026-09-01 | Criação de GOVERNANCE.md | Necessidade de camada formal de governança acima de AGENTS.md/SKILL.md/knowledge base | Define L0-L5, matriz de autorização, políticas de promoção controlada |

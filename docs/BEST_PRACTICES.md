@@ -60,7 +60,7 @@ Antes de executar:
 
 ### O Pipeline
 ```
-Wiki (ai-memory)
+Wiki (memory/knowledge)
     │
     ▼ (pattern: min 3 ocorrências)
 Candidate (memory/candidates/)
@@ -228,7 +228,7 @@ review:
 - [ ] Skills que poderiam resolver gaps recorrentes
 - [ ] Rules necessárias para prevenir falhas
 - [ ] Melhorias de workflow identificadas
-- [ ] Conhecimento que deveria ser promovido para o ai-memory
+- [ ] Conhecimento que deveria ser promovido para o memory/knowledge
 
 ---
 
@@ -260,7 +260,7 @@ review:
 
 ### Ação Prática
 - [ ] Sempre crie handoff report ao encerrar sessão
-- [ ] Persista no ai-memory para recuperação futura
+- [ ] Persista no memory/knowledge para recuperação futura
 - [ ] Verifique se completed/pending estão accurados
 - [ ] Liste todos os artifacts com paths corretos
 - [ ] Documente riscos reais (não inventados)
@@ -407,7 +407,7 @@ git log --oneline -5
 ### Início de Dia
 - [ ] Revise seu nível atual e matriz de autorização
 - [ ] Verifique se há handoffs pendentes
-- [ ] Consulte `ai-memory` para aprendizados relevantes
+- [ ] Consulte `memory/knowledge` para aprendizados relevantes
 
 ### Durante o Trabalho
 - [ ] Use task envelopes (INPUT/OUTPUT JSON)
@@ -436,7 +436,7 @@ git log --oneline -5
 | Consultar limites | Sempre | Matriz ✅⚠️🔐 de GOVERNANCE.md §01 |
 | Promover skill | Pattern em 3+ tasks | Pipeline Memory→Skill→Rule→Agent |
 | Propor skill | Discovery falhou | `proposals/skills/` com justificativa |
-| Handoff session | Encerrar sessão | handoff report JSON + ai-memory |
+| Handoff session | Encerrar sessão | handoff report JSON + memory/knowledge |
 | Commitar código | Sempre | Commits semânticos + branches feature/fix/refactor/docs/proposal |
 | Evitar self-healing | Toda modificação de governance | proposal → review → approve → deploy |
 | Discovery skill | Nova necessidade | Buscar em skills/ → memory/ → proposals/ |

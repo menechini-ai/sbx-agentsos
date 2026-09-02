@@ -17,7 +17,7 @@
 
 ## Memória
 
-- **Fonte de Verdade**: ai-memory
+- **Fonte de Verdade**: memory/knowledge
 - **Consulta**: {{memory_query_procedure}}
 - **Promoção**: {{promotion_pipeline}}
 

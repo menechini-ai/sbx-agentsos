@@ -36,7 +36,7 @@
 Escrever, atualizar ou manter documentação do projeto de forma estruturada, produzindo um `documentation_report` que possa ser:
 - Consumido por outros agents
 - Versionado no repository
-- Promovido para conhecimento no ai-memory
+- Promovido para conhecimento no memory/knowledge
 - Servir de base para future skills ou onboarding
 
 ## When to Use
@@ -81,7 +81,7 @@ Escrever, atualizar ou manter documentação do projeto de forma estruturada, pr
 
 - Verificar se todas as constraints do task envelope foram respeitadas
 - Confirmar que a documentação segue conventions do projeto
-- Cross-check com `ai-memory` — promover learning se aplicável
+- Cross-check com `memory/knowledge` — promover learning se aplicável
 - Confirmar que o document_report responde à necessidade original
 
 ## Failure Modes

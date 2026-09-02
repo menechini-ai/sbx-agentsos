@@ -14,10 +14,10 @@ Definir o fluxo de handoff entre agentes/sessões, garantindo continuidade de co
 ## Passos
 
 1. **Coletar estado**: Reunir o que foi concluído, o que está pendente
-2. **Persistir no ai-memory**: Salvar estado em `memory/sessions/` para recuperação futura
+2. **Persistir no memory/knowledge**: Salvar estado em `memory/sessions/` para recuperação futura
 3. **Produzir handoff_report**: Estruturado com completed/pending/artifacts/risks/instructions
 4. **Entregar ao receptor**: Passar o handoff_report para o próximo agente/sessão
-5. **Recuperar (futuro)**: Ao iniciar nova sessão, recuperar handoff anterior via ai-memory retrieval
+5. **Recuperar (futuro)**: Ao iniciar nova sessão, recuperar handoff anterior via memory/knowledge retrieval
 
 ## Estrutura do Handoff Report
 
@@ -42,7 +42,7 @@ Definir o fluxo de handoff entre agentes/sessões, garantindo continuidade de co
 - Verificar se todos `completed` items foram realmente entregues/no estado correto
 - Confirmar que `artifacts` existem e estão acessíveis
 - Confirmar que `risks` são reais e documentados (não inventados)
-- Cross-check com `ai-memory` — confirmar que estado não contradiz learning promovidos anteriormente
+- Cross-check com `memory/knowledge` — confirmar que estado não contradiz learning promovidos anteriormente
 
 ## Exemplos
 

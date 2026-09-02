@@ -7,7 +7,7 @@ Esta pasta contém a documentação oficial do sistema Agent OS.
 - `ARCHITECTURE.md` - Visão geral da arquitetura do sistema
 - `AGENTS.md` - Contrato global dos agentes (identidade, regras, memória, handoff)
 - `SKILLS.md` - Catálogo de skills disponíveis (globais e específicas)
-- `MEMORY.md` - Documentação do ai-memory (fonte de verdade, políticas de retenção)
+- `MEMORY.md` - Documentação do memory/knowledge (fonte de verdade, políticas de retenção)
 - `CONTRACTS.md` - Formatos dos envelopes INPUT/OUTPUT e schemas
 - `GOVERNANCE.md` (localizada na raiz) - Camada formal de governança (L0-L5, matriz de autorização, políticas)
 

@@ -42,6 +42,27 @@ Define quais ferramentas (MCP, filesystem, github, terminal, etc.) cada nível d
   - `mcp.servers.modify`
   - Operações fora do escopo do departamento
 
+### L2 — Department Agents (Tools Específicas)
+
+#### PM
+- **Allowed**: L2 base + `github.read` (issues, PRs), `github.write` (issues, PRs), `terminal` (npx, npm para scripts de planning)
+
+#### Arquiteto
+- **Allowed**: L2 base + `terminal` (diagram tools, architecture docs generators)
+
+#### Developer
+- **Allowed**: L2 base + `terminal` (npm, pip, cargo, go, docker build, kubectl para dev)
+
+#### QA
+- **Allowed**: L2 base + `terminal` (test runners, k6, playwright, kubectl para test)
+
+#### SRE / Platform
+- **Allowed**: L2 base + `terminal` (az cli, kubectl, helm, terraform, bicep, datadog cli)
+- **Denied**: L2 base + `production.deploy` (requer 🔐)
+
+#### Researcher
+- **Allowed**: L2 base + `terminal` (curl, wget, python para data analysis)
+
 ### L3 — Specialist Agent
 - **Allowed**: 
   - `filesystem.read` — leitura do scope especializado
@@ -54,6 +75,24 @@ Define quais ferramentas (MCP, filesystem, github, terminal, etc.) cada nível d
   - `secrets.export`
   - `mcp.*` (qualquer operação MCP)
   - Operações fora do scope especializado
+
+### L3 — Specialist Agents Azure (Tools Específicas)
+
+#### Azure DevOps (L3)
+- **Allowed**: L3 base + `az devops` (pipelines, repos, boards), `az pipelines` (build, release)
+- **Denied**: L3 base + `production.deploy` (requer 🔐 via L1/L2)
+
+#### Azure Cloud (L3)
+- **Allowed**: L3 base + `az cli` (resource group, vnet, subnet, nsg, keyvault, policy), `bicep` (build, what-if), `terraform` (init, plan, apply)
+- **Denied**: L3 base + `terraform apply` em prod (requer 🔐), `az deployment` em prod (requer 🔐)
+
+#### Azure AKS (L3)
+- **Allowed**: L3 base + `az aks` (create, update, upgrade, get-credentials), `kubectl` (apply, rollout, get, describe), `helm` (install, upgrade, template)
+- **Denied**: L3 base + `az aks upgrade` em prod (requer 🔐), `kubectl delete` em prod (requer 🔐)
+
+#### Datadog (L3)
+- **Allowed**: L3 base + `datadog.api` (monitors, dashboards, slo, integrations), `datadog.terraform` (provider), `datadog.cli`
+- **Denied**: L3 base + `datadog.api` delete em prod (requer 🔐)
 
 ### L4 — Subagent
 - **Allowed**: 
@@ -89,6 +128,32 @@ Exemplo de policy:
 }
 ```
 
+Exemplo para Azure:
+```json
+{
+  "tool": "az",
+  "allowed_levels": ["L0", "L1", "L2", "L3"],
+  "denied_operations": ["production.deploy", "secrets.export", "az deployment create --resource-group production"],
+  "scope_rules": {
+    "L2": "sre-scoped",
+    "L3": "azure-specialist-scoped"
+  }
+}
+```
+
+Exemplo para Datadog:
+```json
+{
+  "tool": "datadog",
+  "allowed_levels": ["L0", "L1", "L2", "L3"],
+  "denied_operations": ["production.deploy", "secrets.export", "monitor.delete"],
+  "scope_rules": {
+    "L2": "sre-scoped",
+    "L3": "datadog-specialist-scoped"
+  }
+}
+```
+
 ## Command Hardening (CLAW-HCG Inspired)
 
 Alguns comandos são bloqueados por padrão por razões de segurança (Self-Healing Paradox):
@@ -100,8 +165,14 @@ Alguns comandos são bloqueados por padrão por razões de segurança (Self-Heal
 - `curl | bash`, `wget | sh` — execução de scripts remotos
 
 **Bloqueados para L1+**:
-- Qualquer comando que modifique `GOVERNANCE.md`, `guardrails/`, `memory/ai-memory/wiki/`
+- Qualquer comando que modifique `GOVERNANCE.md`, `guardrails/`, `memory/knowledge/`
 - Qualquer comando de deploy direto (`git push production`, `npm publish`, etc.)
+
+**Bloqueados para L3 Azure**:
+- `az deployment create --resource-group production` — deploy direto em prod
+- `terraform apply -auto-approve` em prod
+- `az aks upgrade --resource-group production` — upgrade cluster prod
+- `kubectl delete deployment -n production` — delete em prod
 
 ## Validação
 
@@ -115,6 +186,26 @@ Exemplo:
   "tools": {
     "allowed": ["github.read", "github.write", "filesystem.read", "filesystem.write"],
     "denied": ["production.deploy", "secrets.export", "mcp.servers.modify"]
+  }
+}
+```
+
+Exemplo para SRE L2:
+```json
+{
+  "tools": {
+    "allowed": ["filesystem.read", "filesystem.write", "github.read", "github.write", "terminal", "az", "kubectl", "helm", "terraform", "bicep", "datadog"],
+    "denied": ["production.deploy", "secrets.export", "mcp.permissions.modify", "mcp.servers.modify"]
+  }
+}
+```
+
+Exemplo para Azure AKS L3:
+```json
+{
+  "tools": {
+    "allowed": ["filesystem.read", "filesystem.write", "github.read", "github.write", "terminal", "az", "kubectl", "helm"],
+    "denied": ["production.deploy", "secrets.export", "mcp.*", "az deployment create --resource-group production", "terraform apply -auto-approve"]
   }
 }
 ```

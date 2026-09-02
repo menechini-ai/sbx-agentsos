@@ -25,20 +25,20 @@
 ## Dependencies
 
 - `filesystem` — Para leitura/escrita de artefatos durante handoff
-- `ai-memory` — Para persistência do estado do handoff e recuperação entre sessões
+- `memory/knowledge` — Para persistência do estado do handoff e recuperação entre sessões
 
 ## Tools
 
 - `filesystem.read` — Ler artefatos, docs, code a ser transferido
 - `filesystem.write` — Escrever estado de handoff, persister artefatos
-- `ai-memory.read` — Recuperar estado de handoffs anteriores, learning do ai-memory
-- `ai-memory.write` — Persistir estado atual de handoff para recuperação futura
+- `memory/knowledge.read` — Recuperar estado de handoffs anteriores, learning do memory/knowledge
+- `memory/knowledge.write` — Persistir estado atual de handoff para recuperação futura
 
 ## Purpose
 
 Garantir continuidade entre sessões e transferência adequada de conhecimento, estado e responsabilidade entre agentes ou sessões de trabalho, produzindo um `handoff_report` estruturado que possa ser:
 - Consumido pelo agente/próxima sessão receptor
-- Persistido no `ai-memory` para recuperação futura
+- Persistido no `memory/knowledge` para recuperação futura
 - Utilizado como base para `improvement_candidates` e promoção de skills
 
 ## When to Use
@@ -52,12 +52,12 @@ Garantir continuidade entre sessões e transferência adequada de conhecimento, 
 
 - Quando todas as tarefas estão completas e não há nada a transferir (encerre simplesmente a sessão)
 - Quando o handoff seria para um agente que não tem autoridade sobre os artefatos (verificar matriz ✅⚠️🔐 de GOVERNANCE.md)
-- Quando o conhecimento já está adequadamente no `ai-memory` como learning promovido (verificar pipeline Memory→Skill→Rule)
+- Quando o conhecimento já está adequadamente no `memory/knowledge` como learning promovido (verificar pipeline Memory→Skill→Rule)
 
 ## Procedure
 
 1. **Coletar estado**: Reunir o que foi concluído, o que está pendente, os artefatos e riscos
-2. **Persistir no ai-memory**: Salvar estado de handoff para recuperação futura (sessions/, decisions/)
+2. **Persistir no memory/knowledge**: Salvar estado de handoff para recuperação futura (sessions/, decisions/)
 3. **Entregar report**: Produzir `handoff_report` com:
    - `from_agent`: quem estáhando
    - `task_id`: tarefa referência
@@ -73,7 +73,7 @@ Garantir continuidade entre sessões e transferência adequada de conhecimento, 
 - Verificar se todos os `completed` items foram realmente entregues/no estado correto
 - Confirmar que `artifacts` existem e estão acessíveis
 - Confirmar que `risks` são reais e documentados (não inventados)
-- Cross-check com `ai-memory` — confirmar que estado não contradiz learning promovidos anteriormente
+- Cross-check com `memory/knowledge` — confirmar que estado não contradiz learning promovidos anteriormente
 
 ## Failure Modes
 
@@ -128,7 +128,7 @@ Output: handoff_report contendo:
 
 - Dependente de estado accuratemente rastreado durante a task
 - Pode não cobrir todos os tipos de transferência (ex: transferência entre diferentes projects)
-- Requires acesso a filesystem e ai-memory (L0-L2 tools)
+- Requires acesso a filesystem e memory/knowledge (L0-L2 tools)
 
 ## Improvement Criteria
 

@@ -35,7 +35,7 @@
 
 Implementar features, corrigir bugs, refatorar código ou adicionar testes conforme contrato INPUT recebido, produzindo um `implementation_report` estruturado que possa ser:
 - Validado através dos contratos OUTPUT
-- Promovido para knowledge no ai-memory
+- Promovido para knowledge no memory/knowledge
 - Servir de base para future skills ou rules
 
 ## When to Use
@@ -82,7 +82,7 @@ Implementar features, corrigir bugs, refatorar código ou adicionar testes confo
 - Verificar se todas as constraints do task envelope foram respeitadas
 - Confirmar que changes não violam authority limits de GOVERNANCE.md §01
 - Confirmar que tests passam no número especificado (ou documentar failures)
-- Cross-check com `ai-memory` — promover learning se aplicável
+- Cross-check com `memory/knowledge` — promover learning se aplicável
 
 ## Failure Modes
 

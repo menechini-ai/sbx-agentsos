@@ -8,13 +8,13 @@
 
 ## 1. Overview
 
-This design adds five incremental capabilities to the Agent OS memory system, aligning it with the ai-memory project's production-grade standards while respecting the existing Git-wiki + SQLite architecture. The features are:
+This design adds five incremental capabilities to the Agent OS memory system, aligning it with the memory/knowledge project's production-grade standards while respecting the existing Git-wiki + SQLite architecture. The features are:
 
 1. **Atomic wiki entries** — one idea per markdown file
 2. **Structured triplet fields** — explicit `actor → decision → rationale` in YAML frontmatter
 3. **Link evolution metadata** — reference counting and last-referenced tracking
 4. **Post-turn auto-learning hook** — automatically propose candidates from result envelopes
-5. **Governance authorization wrapper** — L0-L5 access control over ai-memory operations
+5. **Governance authorization wrapper** — L0-L5 access control over memory/knowledge operations
 
 These features are designed to be **incrementally adoptable** — each can be implemented independently without breaking existing workflows.
 
@@ -100,7 +100,7 @@ related_learnings:
 - `SELECT * FROM learnings WHERE decision = 'use-refresh-tokens'`
 - `SELECT * FROM learnings WHERE rationale LIKE '%friction%'`
 
-The SQLite index in `ai-memory` can be extended to index these fields via a derived column or FTS5 virtual table inclusion.
+The SQLite index in `memory/knowledge` can be extended to index these fields via a derived column or FTS5 virtual table inclusion.
 
 **Optional for now**: New entries include the fields; existing entries can opt-in gradually. The fields are not enforced at read time but are expected convention.
 
@@ -194,9 +194,9 @@ Default: `enabled: false` (to avoid noise in existing workflows). Users can opt-
 
 ### 2.5 Governance Authorization Wrapper (Agent OS L0-L5 influence)
 
-**Current problem**: The L0-L5 hierarchy is defined in GOVERNANCE.md but has no concrete implementation over ai-memory operations. Any agent with ai-memory credentials can read/write any entry.
+**Current problem**: The L0-L5 hierarchy is defined in GOVERNANCE.md but has no concrete implementation over memory/knowledge operations. Any agent with memory/knowledge credentials can read/write any entry.
 
-**Solution**: A new governance file `agentsos/guardrails/memory-authorization.md` that defines an authorization matrix over ai-memory operations, checked before any read/write.
+**Solution**: A new governance file `agentsos/guardrails/memory-authorization.md` that defines an authorization matrix over memory/knowledge operations, checked before any read/write.
 
 **Authorization Matrix** (checked at runtime by a wrapper/module):
 
@@ -333,8 +333,8 @@ After implementation, measure:
 2. **Auto-hook: opt-in per-task or system-wide default?**
    - Recommendation: opt-in via task envelope `auto_learning_hook.enabled`. Avoids noise in existing workflows. Users explicitly opt-in.
 
-3. **Authorization: enforce at script level or at ai-memory server level?**
-   - Recommendation: enforce at Agent OS script level (Python module), as the ai-memory server may not have Agent OS context. The wrapper checks the matrix before calling ai-memory operations.
+3. **Authorization: enforce at script level or at memory/knowledge server level?**
+   - Recommendation: enforce at Agent OS script level (Python module), as the memory/knowledge server may not have Agent OS context. The wrapper checks the matrix before calling memory/knowledge operations.
 
 4. **Do we want the `related_learnings` auto-population?**
    - The migration script can auto-populate based on co-occurrence (same task ID, same actor), but it's heuristic. Manual population is safer initially.
@@ -356,4 +356,4 @@ After implementation, measure:
 
 ---
 
-*This design follows the Agent OS governance framework (L0-L5) and integrates with the ai-memory architecture as described in the project's README and ARCHITECTURE.md. All changes are incremental and backward-compatible.*
+*This design follows the Agent OS governance framework (L0-L5) and integrates with the memory/knowledge architecture as described in the project's README and ARCHITECTURE.md. All changes are incremental and backward-compatible.*

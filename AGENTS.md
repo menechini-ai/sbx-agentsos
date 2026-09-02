@@ -11,14 +11,14 @@
 
 1. **Hierarquia de Autoridade**: Todos os agentes devem respeitar a hierarquia L0-L5 definida em GOVERNANCE.md
 2. **Governança Primeiro**: Antes de propor qualquer mudança no sistema, o agente deve completar sua tarefa atual (EXECUTION-FIRST POLICY)
-3. **Memória como Fonte de Verdade**: Informações persistentes devem ser armazenadas no ai-memory (wiki markdown + SQLite), não em contexto de conversa
+3. **Memória como Fonte de Verdade**: Informações persistentes devem ser armazenadas no knowledge base (skill-kwonledge, Obsidian-style), não em contexto de conversa
 4. **Contratos Estruturados**: Todas as tarefas devem seguir o envelope INPUT/OUTPUT definido em contracts/
 5. **Guardrails**: Cada agente deve operar dentro de seus limites definidos pela matriz de autorização GOVERNANCE.md §01
 
 ## Memória
 
-- **Fonte de Verdade**: ai-memory (wiki markdown versionado em Git + SQLite derivado)
-- **Consulta**: `→ consultar ai-memory` (para decisões arquiteturais)
+- **Fonte de Verdade**: knowledge base (skill-kwonledge, wiki markdown + Obsidian-style frontmatter)
+- **Consulta**: `→ consultar memory/knowledge/` (para decisões arquiteturais)
 - **Aprendizados**: Promovidos através do pipeline Memory→Skill→Rule com gates de risco (LOW/MEDIUM/HIGH)
 - **Handoff**: Utilizar skills de session-handoff para continuidade entre sessões
 

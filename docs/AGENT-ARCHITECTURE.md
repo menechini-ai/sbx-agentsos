@@ -15,7 +15,7 @@ Construir uma arquitetura local e modular para agentes de IA na qual:
 - Claude Code, Codex e outros runtimes possam trabalhar sobre a mesma estrutura;
 - a memória não dependa exclusivamente do contexto da conversa.
 
-A arquitetura será inspirada no conceito de agentes baseados em arquivos Markdown e utilizará o ai-memory como infraestrutura de memória persistente.
+A arquitetura será inspirada no conceito de agentes baseados em arquivos Markdown e utilizará o memory/knowledge como infraestrutura de memória persistente.
 
 ## 2. Princípios
 
@@ -63,7 +63,7 @@ Para regras de desenvolvimento:
   → consultar skills/development/
 
 Para memória:
-  → consultar ai-memory
+  → consultar memory/knowledge
 
 Para decisões arquiteturais:
   → consultar memória do projeto
@@ -114,7 +114,7 @@ agent-os/
 │       └── SKILL.md
 │
 ├── memory/
-│   └── ai-memory/
+│   └── memory/knowledge/
 │
 ├── work/
 │
@@ -141,7 +141,7 @@ O projeto será dividido conceitualmente em duas camadas.
                     │
                     ▼
 ┌───────────────────────────────────────┐
-│             ai-memory                 │
+│             memory/knowledge                 │
 │                                       │
 │  Persistent memory                    │
 │  Session continuity                   │
@@ -155,17 +155,17 @@ O projeto será dividido conceitualmente em duas camadas.
 
 O Agent OS define como os agentes trabalham.
 
-O ai-memory define como o conhecimento persistente é armazenado e recuperado.
+O memory/knowledge define como o conhecimento persistente é armazenado e recuperado.
 
 Essa separação é importante para que a arquitetura não fique acoplada ao mecanismo de memória.
 
-## 5. ai-memory
+## 5. memory/knowledge
 
-O ai-memory será utilizado como mecanismo oficial de memória.
+O memory/knowledge será utilizado como mecanismo oficial de memória.
 
 Ele mantém uma wiki de Markdown como fonte de verdade e utiliza SQLite como índice derivado para recuperação, busca textual e outras formas de retrieval.
 
-A estrutura interna do ai-memory será tratada como infraestrutura.
+A estrutura interna do memory/knowledge será tratada como infraestrutura.
 
 Não devemos duplicar essa lógica criando outro sistema paralelo de:
 
@@ -177,7 +177,7 @@ memory/
 └── handoffs/
 ```
 
-se essas responsabilidades já forem atendidas pelo ai-memory.
+se essas responsabilidades já forem atendidas pelo memory/knowledge.
 
 A regra será: **uma única fonte de verdade para memória**.
 
@@ -197,10 +197,10 @@ agent-os/
 ├── docs/
 │
 └── memory/
-    └── ai-memory/
+    └── memory/knowledge/
 ```
 
-Entretanto, o diretório físico utilizado pelo ai-memory deverá seguir a configuração oficial da ferramenta.
+Entretanto, o diretório físico utilizado pelo memory/knowledge deverá seguir a configuração oficial da ferramenta.
 
 O projeto atualmente organiza sua memória em uma estrutura semelhante a:
 
@@ -215,7 +215,7 @@ O projeto atualmente organiza sua memória em uma estrutura semelhante a:
 
 onde `wiki/` contém o Markdown considerado fonte de verdade e `db/` contém o índice SQLite derivado.
 
-Portanto, não devemos modificar arbitrariamente a estrutura interna do ai-memory.
+Portanto, não devemos modificar arbitrariamente a estrutura interna do memory/knowledge.
 
 ## 7. Memória como conhecimento, não como configuração
 
@@ -226,7 +226,7 @@ AGENTS.md
     ↓
 REGRAS DO AGENTE
 
-ai-memory
+memory/knowledge
     ↓
 CONHECIMENTO ADQUIRIDO
 ```
@@ -245,7 +245,7 @@ Isso é conhecimento adquirido e pertence à memória.
 
 Essa separação evita transformar a memória em um enorme arquivo de instruções.
 
-O próprio ai-memory recomenda que regras duráveis do projeto permaneçam no arquivo de instruções do agente, enquanto fatos, decisões e aprendizados podem ser armazenados na wiki.
+O próprio memory/knowledge recomenda que regras duráveis do projeto permaneçam no arquivo de instruções do agente, enquanto fatos, decisões e aprendizados podem ser armazenados na wiki.
 
 ## 8. Agents
 
@@ -393,7 +393,7 @@ A regra será: uma skill deve existir no nível mais baixo possível que ainda p
 
 ## 12. Session Handoff
 
-A continuidade entre sessões será responsabilidade do ai-memory e das skills de handoff.
+A continuidade entre sessões será responsabilidade do memory/knowledge e das skills de handoff.
 
 O objetivo é permitir:
 
@@ -415,7 +415,7 @@ continuação
 
 Não devemos depender de copiar manualmente o histórico da conversa.
 
-O ai-memory foi projetado justamente para permitir que um agente seja interrompido e outro agente continue o trabalho utilizando a memória compartilhada.
+O memory/knowledge foi projetado justamente para permitir que um agente seja interrompido e outro agente continue o trabalho utilizando a memória compartilhada.
 
 ## 13. Memória compartilhada
 
@@ -445,7 +445,7 @@ Developer
     └── aprende algo
              │
              ▼
-         ai-memory
+         memory/knowledge
              │
        ┌─────┴─────┐
        ▼           ▼
@@ -479,7 +479,7 @@ Rejected alternatives:
 Quais alternativas foram consideradas.
 ```
 
-O ai-memory já possui uma convenção para páginas de decisão e recomenda registrar decisões duráveis de forma estruturada.
+O memory/knowledge já possui uma convenção para páginas de decisão e recomenda registrar decisões duráveis de forma estruturada.
 
 ## 15. Conhecimento compartilhado
 
@@ -522,7 +522,7 @@ work/
 └── reports/
 ```
 
-A regra será: `work/` contém artefatos de trabalho; ai-memory contém conhecimento que deve sobreviver ao trabalho.
+A regra será: `work/` contém artefatos de trabalho; memory/knowledge contém conhecimento que deve sobreviver ao trabalho.
 
 Exemplo:
 
@@ -564,7 +564,7 @@ Agente principal
    │
    ├── consulta contexto
    │
-   ├── consulta ai-memory
+   ├── consulta memory/knowledge
    │
    ├── identifica skill
    │
@@ -585,7 +585,7 @@ Consolidação
    └── handoff
    │
    ▼
-ai-memory
+memory/knowledge
 ```
 
 ## 19. Fluxo de uma nova sessão
@@ -602,7 +602,7 @@ AGENTS.md
 Identidade do agente
      │
      ▼
-ai-memory
+memory/knowledge
      │
    ├── estado atual
    ├── decisões recentes
@@ -620,7 +620,7 @@ A memória não deve ser carregada integralmente.
 
 O agente deve recuperar apenas aquilo que é relevante para a tarefa.
 
-Esse princípio é importante porque o ai-memory utiliza uma camada de retrieval sobre a wiki, incluindo busca textual e relações entre páginas, mantendo o Markdown como fonte de verdade.
+Esse princípio é importante porque o memory/knowledge utiliza uma camada de retrieval sobre a wiki, incluindo busca textual e relações entre páginas, mantendo o Markdown como fonte de verdade.
 
 ## 20. Fluxo de aprendizado
 
@@ -635,7 +635,7 @@ Resultado
    ↓
 Aprendizado
    ↓
-ai-memory
+memory/knowledge
    ↓
 Próxima tarefa
    ↓
@@ -646,7 +646,7 @@ Quando um aprendizado se tornar uma regra permanente, ele deverá ser promovido 
 
 Quando se tornar um procedimento reutilizável, deverá ser promovido para uma Skill.
 
-Quando for apenas conhecimento contextual, permanecerá no ai-memory.
+Quando for apenas conhecimento contextual, permanecerá no memory/knowledge.
 
 Assim:
 
@@ -663,7 +663,7 @@ Experiência
     │
     └── conhecimento contextual
             ↓
-         ai-memory
+         memory/knowledge
 ```
 
 ## 21. Git
@@ -679,7 +679,7 @@ O objetivo é permitir:
 - colaboração;
 - auditoria.
 
-O ai-memory também utiliza Git para versionar sua wiki Markdown, mantendo o conteúdo legível e editável.
+O memory/knowledge também utiliza Git para versionar sua wiki Markdown, mantendo o conteúdo legível e editável.
 
 ## 22. Portabilidade
 
@@ -694,7 +694,7 @@ O mesmo projeto deverá poder ser utilizado por:
 - Gemini CLI
 - outros agentes compatíveis
 
-O ai-memory atualmente possui integração com diversos desses ambientes através de MCP e hooks.
+O memory/knowledge atualmente possui integração com diversos desses ambientes através de MCP e hooks.
 
 A camada específica do runtime deve ficar separada da arquitetura dos agentes.
 
@@ -711,7 +711,7 @@ SKILL.md
     ↓
 "COMO EXECUTO UMA TAREFA"
 
-ai-memory
+memory/knowledge
     ↓
 "O QUE EU APRENDI"
 
@@ -753,9 +753,9 @@ agents/ceo/
 
 Objetivo: ter um único agente funcionando corretamente antes de criar vários agentes.
 
-### Fase 2 — Integrar ai-memory
+### Fase 2 — Integrar memory/knowledge
 
-Instalar e configurar o ai-memory.
+Instalar e configurar o memory/knowledge.
 
 Configurar:
 
@@ -812,7 +812,7 @@ CEO
  └── Developer
        │
        ├── Skills
-       └── ai-memory
+       └── memory/knowledge
 ```
 
 ### Fase 5 — Memória compartilhada
@@ -825,7 +825,7 @@ CEO
  └── cria conhecimento
         │
         ▼
-    ai-memory
+    memory/knowledge
         │
         ▼
    Developer
@@ -844,7 +844,7 @@ session
    ↓
 handoff
    ↓
-ai-memory
+memory/knowledge
    ↓
 Agent B
 ```
@@ -862,7 +862,7 @@ observações
    ↓
 aprendizados
    ↓
-ai-memory
+memory/knowledge
    ↓
 análise periódica
    ↓
@@ -871,7 +871,7 @@ novas skills
 melhores agentes
 ```
 
-O ai-memory já possui mecanismos de consolidação e auto-improvement que podem servir como base para essa etapa.
+O memory/knowledge já possui mecanismos de consolidação e auto-improvement que podem servir como base para essa etapa.
 
 ## 25. Resultado esperado
 
@@ -896,7 +896,7 @@ Ao final, o sistema deverá funcionar conceitualmente assim:
                     └─────┬─────┘
                           │
                     ┌─────▼─────┐
-                    │ ai-memory │
+                    │ memory/knowledge │
                     └─────┬─────┘
                           │
             ┌─────────────┼─────────────┐
@@ -914,7 +914,7 @@ O objetivo é construir um sistema no qual os agentes compartilhem conhecimento,
 
 ## 26. Referência principal
 
-A implementação da camada de memória deverá seguir a arquitetura oficial do projeto ai-memory, especialmente:
+A implementação da camada de memória deverá seguir a arquitetura oficial do projeto memory/knowledge, especialmente:
 
 - `docs/ARCHITECTURE.md`
 - `docs/design-decisions.md`

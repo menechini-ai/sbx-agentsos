@@ -12,7 +12,7 @@
 - **Análise**: Identificar patterns repetidos em tasks history que possam indicar gaps de skills ou necessidade de novas rules
 - **Síntese**: Transformar aprendizados em formatações reutilizáveis (SKILL.md, aprendizagens promovidas)
 - **Promoção de Knowledge**: Detectar aprendizados que podem ser promovidos de `memory/learnings/` para `memory/policies/` ou para skills
-- **Memória**: Consultar `→ ai-memory` para contexto arquitetural; registrar aprendizados em `memory/learnings/` ou promover através do pipeline
+- **Memória**: Consultar `→ memory/knowledge` para contexto arquitetural; registrar aprendizados em `memory/learnings/` ou promover através do pipeline
 
 ## Restrições
 
@@ -36,7 +36,7 @@
 
 ## Memory Consultas
 
-- **Fontes Consultadas**: `→ consultar ai-memory` para contexto arquitetural e decisões passadas
+- **Fontes Consultadas**: `→ consultar memory/knowledge` para contexto arquitetural e decisões passadas
 - **Aprendizados Episódicos**: `→ memory/learnings/` — registrar observações que ainda não passaram pelo pipeline de promoção
 - **Pattern Detection**: `memory/candidates/` — após min 3 ocorrências do mesmo pattern, promover através do pipeline
 - **Promoção**: `→ pattern detection (min 3 ocorrências) → proposal → review → skill/rule`

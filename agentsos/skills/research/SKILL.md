@@ -33,7 +33,7 @@
 
 Realizar pesquisa aprofundada sobre um domínio, tópico ou questão específica, produzindo um relatório estruturado que possa ser:
 - Reutilizado por outros agents
-- Promovido para conhecimento persistente no ai-memory
+- Promovido para conhecimento persistente no memory/knowledge
 - Utilizado como base para skills ou rules
 
 ## When to Use
@@ -45,7 +45,7 @@ Realizar pesquisa aprofundada sobre um domínio, tópico ou questão específica
 
 ## When NOT to Use
 
-- Quando a informação já está disponível no `ai-memory` (consultar antes)
+- Quando a informação já está disponível no `memory/knowledge` (consultar antes)
 - Quando a tarefa requer implementação de código (usar `coding` skill)
 - Quando a tarefa requer testes (usar `testing` skill)
 - Quando a decisão precisa ser tomada imediatamente sem pesquisa (usar expertise existente)
@@ -60,13 +60,13 @@ Realizar pesquisa aprofundada sobre um domínio, tópico ou questão específica
    - Findings principais
    - Lacunas identificadas
    - Recomendações
-4. **Validar**: Cross-check com `ai-memory` — verificar se informação já foi aprendida/promovida anteriormente
+4. **Validar**: Cross-check com `memory/knowledge` — verificar se informação já foi aprendida/promovida anteriormente
 5. **Entregar**: Produzir `test_report` output estruturado
 
 ## Validation
 
 - Verificar se todas as sources foram citadas no `test_report`
-- Cross-check com `ai-memory` — confirmar que informação não está já registrada
+- Cross-check com `memory/knowledge` — confirmar que informação não está já registrada
 - Confirmar que o relatório responde à pergunta/necessidade original
 
 ## Failure Modes
@@ -92,7 +92,7 @@ Output: test_report contendo:
 ```
 Input: repeated_task="test API authentication"
 Output: test_report contendo:
-  - Sources: 4 task histories, ai-memory sessions
+  - Sources: 4 task histories, memory/knowledge sessions
   - Findings: Pattern detected em 4/4 tasks; common failure em token expiration
   - Recommendation: Consider creating "auth-testing" skill
 ```

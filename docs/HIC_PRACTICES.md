@@ -54,7 +54,7 @@ HIC (CEO ou Developer)
 **No Agent OS**:
 - Use contratos INPUT/OUTPUT estruturados para eliminar ambiguidades
 - Use handoffs estruturados para eliminar reuniões de status
-- Use memória compartilhada (ai-memory) para eliminar "deixe eu checar com X"
+- Use memória compartilhada (memory/knowledge) para eliminar "deixe eu checar com X"
 - Use a matriz de autorização ✅⚠️🔐 para eliminar gatekeeping desnecessário
 
 **Exemplo**:
@@ -105,7 +105,7 @@ HIC Agent
 ├── Autonomia Alta
 │   └── Opera dentro de limites claros, sem supervisão constante
 ├── Contexto Rico
-│   └── Consulta ai-memory, decisions, learnings antes de agir
+│   └── Consulta memory/knowledge, decisions, learnings antes de agir
 ├── Sistemas Reutilizáveis
 │   └── Constrói skills, templates, workflows que outros agents usam
 ├── Orquestração
@@ -192,7 +192,7 @@ Y
 **Definição**: Se um único HIC orquestra processos vitais, a organização depende excessivamente dessa pessoa.
 
 **Mitigações no Agent OS**:
-- **Memória compartilhada**: Todo conhecimento deve estar em `ai-memory`, não na cabeça do HIC
+- **Memória compartilhada**: Todo conhecimento deve estar em `memory/knowledge`, não na cabeça do HIC
 - **Skills reutilizáveis**: Procedimentos devem ser documentados em `SKILL.md`, não em prompts privados
 - **Handoffs estruturados**: O HIC deve ser capaz de transferir trabalho sem perda de informação
 - **Improvement Engine**: O sistema deve detectar gaps mesmo quando o HIC não está presente
@@ -237,7 +237,7 @@ Y
 |---------|-----------|
 | **Agent Throughput** | Tasks completadas por agente por semana |
 | **Skill Reuse Rate** | Número de usos de cada skill / número de skills disponíveis |
-| **Memory Hit Rate** | % de tasks que consultam ai-memory antes de executar |
+| **Memory Hit Rate** | % de tasks que consultam memory/knowledge antes de executar |
 | **Handoff Success Rate** | % de handoffs sem perda de informação ou retrabalho |
 | **Improvement Proposal Rate** | Propostas aprovadas / propostas submetidas |
 | **Governance Compliance** | % de tasks sem violations de guardrails |
@@ -251,7 +251,7 @@ Y
 
 | Categoria | Ferramenta | Propósito |
 |-----------|------------|-----------|
-| **Memória** | ai-memory | Conhecimento persistente, retrieval, handoff |
+| **Memória** | memory/knowledge | Conhecimento persistente, retrieval, handoff |
 | **Skills** | SKILL.md | Procedimentos reutilizáveis |
 | **Contratos** | JSON envelopes | Comunicação estruturada entre agents |
 | **MCP** | GitHub, Filesystem, Database | Integração com ferramentas externas |
@@ -339,7 +339,7 @@ O **High-Impact Individual Contributor (HIC)** no Agent OS não é alguém que e
 5. **Respeita** a governança como limite, não como obstáculo
 6. **Mede** sucesso por impacto sistêmico, não por atividade
 
-O Agent OS foi projetado para amplificar HICs, não para substituí-los. A governança (GOVERNANCE.md) garante que o leverage seja seguro e auditável. A memória (ai-memory) garante que o conhecimento não se perca. Os contratos (INPUT/OUTPUT) garantem que a comunicação seja clara. As skills garantem que procedimentos sejam reutilizáveis.
+O Agent OS foi projetado para amplificar HICs, não para substituí-los. A governança (GOVERNANCE.md) garante que o leverage seja seguro e auditável. A memória (memory/knowledge) garante que o conhecimento não se perca. Os contratos (INPUT/OUTPUT) garantem que a comunicação seja clara. As skills garantem que procedimentos sejam reutilizáveis.
 
 **O objetivo final**: Dar ao HIC a arquitetura, as ferramentas e a governança para que ele possa produzir resultados que anteriormente requeriam uma equipe inteira — sem perder o controle, a qualidade ou a rastreabilidade.
 

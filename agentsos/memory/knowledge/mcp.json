@@ -1,0 +1,11 @@
+//https://github.com/bitbonsai/mcpvault
+
+{
+  "mcpServers": {
+    "obsidian": {
+      "command": "npx",
+      "args": ["@bitbonsai/mcpvault@latest", "~/SRE/github/skill-kwonledge"],
+      "env": {}
+    }
+}
+}

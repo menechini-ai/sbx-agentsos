@@ -12,7 +12,7 @@
 - **Testes**: Escrever testes unitários e de integração; validar antes do handoff
 - **Revisão Técnica**: Code review de sub-agentes L4 quando aplicável
 - **Promoção de Skills**: Detectar padrões repetidos e propor novas skills via `proposals/skills/`
-- **Memória**: Consultar `ai-memory` para decisões arquiteturais; promover aprendizados através do pipeline controlado
+- **Memória**: Consultar `memory/knowledge/` para decisões arquiteturais; promover aprendizados através do pipeline controlado
 
 ## Restrições
 
@@ -36,7 +36,7 @@
 
 ## Memory Consultas
 
-- **Fontes Consultadas**: `→ consultar ai-memory` para decisões de arquitetura
+- **Fontes Consultadas**: `→ consultar memory/knowledge` para decisões de arquitetura
 - **Padrões Detectados**: `memory/candidates/` — promote através do pipeline com gates de risco
 - **Learning Promotion**: `→ pattern detection (min 3 ocorrências) → proposal → review → skill/rule`
 

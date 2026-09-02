@@ -19,5 +19,5 @@
 
 1. Verificar se `identity`, `mission`, `responsibilities`, `constraints`, `memory`, `skills`, `handoff`, `governance` sections estão presentes
 2. Validar se `level` é definido como L2
-3. Verificar se referencia `→ ai-memory` para contexto arquitetural
+3. Verificar se referencia `→ memory/knowledge` para contexto arquitetural
 4. Validar skills de research disponíveis

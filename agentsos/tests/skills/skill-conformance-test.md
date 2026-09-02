@@ -27,7 +27,7 @@
 
 - Purpose focused on research/analysis
 - When-to-use scenarios de pesquisa
-- When-NOT-to-use evita duplicar research já no ai-memory
+- When-NOT-to-use evita duplicar research já no memory/knowledge
 
 #### coding/SKILL.md
 
