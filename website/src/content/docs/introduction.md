@@ -5,7 +5,7 @@ description: Agent OS — Modular AI-agent architecture with formal governance
 
 # Agent OS
 
-**Agent OS** is a modular AI-agent architecture with formal governance, persistent memory, and reusable skills. It combines a constitutional L0-L5 governance model with the BMAD (Breakthrough Method for Agile AI-Driven Development) delivery loop.
+**Agent OS** is a modular AI-agent architecture with formal governance, persistent memory, and reusable skills. It combines a constitutional L0-L5 governance model with the Agent OS (Agent OS Delivery Method) delivery loop.
 
 ## Key Features
 

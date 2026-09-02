@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/access/SRE/AI/sbx-agents-os/.claude/session-start.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

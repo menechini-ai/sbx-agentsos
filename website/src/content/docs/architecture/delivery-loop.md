@@ -1,11 +1,11 @@
 ---
 title: Delivery Loop
-description: The BMAD delivery loop for Agent OS
+description: The Agent OS delivery loop for Agent OS
 ---
 
 # Delivery Loop
 
-Agent OS uses the **BMAD Delivery Loop** for all software delivery work.
+Agent OS uses the **Agent OS Delivery Loop** for all software delivery work.
 
 ## The Loop
 

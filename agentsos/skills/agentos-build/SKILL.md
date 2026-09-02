@@ -4,7 +4,7 @@
 
 - **Name**: agentos-build
 - **Version**: 1.0.0
-- **Description**: Implementa código/infra baseado em tech spec e stories aprovadas (equiv. bmad-build).
+- **Description**: Implementa código/infra baseado em tech spec e stories aprovadas.
 - **Owner**: developer
 - **Status**: stable
 

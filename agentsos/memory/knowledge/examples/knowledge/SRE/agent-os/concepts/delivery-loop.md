@@ -1,6 +1,6 @@
 ---
 id: agent-os.concept.delivery-loop
-title: Delivery Loop (BMAD)
+title: Delivery Loop
 type: concept
 domain: agent-os
 tags:
@@ -25,11 +25,11 @@ dependencies:
 quality_score: 90
 ---
 
-# Delivery Loop (BMAD)
+# Delivery Loop
 
 ## Overview
 
-Pipeline de delivery inspirado em BMAD: um único caminho de delivery que todos seguem, adaptado por complexidade.
+Pipeline de delivery proprietário: um único caminho de delivery que todos seguem, adaptado por complexidade.
 
 ## Purpose
 

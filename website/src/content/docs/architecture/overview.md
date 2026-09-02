@@ -9,7 +9,7 @@ Agent OS is a modular AI-agent architecture with formal governance, persistent m
 
 ## Key Differentiator
 
-**Constitutional Governance** (L0-L5) combined with **BMAD Delivery Loop** (Clarify→Plan→Build→Verify→Learn).
+**Constitutional Governance** (L0-L5) combined with **Agent OS Delivery Loop** (Clarify→Plan→Build→Verify→Learn).
 
 ## Architecture Layers
 

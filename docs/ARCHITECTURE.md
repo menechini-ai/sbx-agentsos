@@ -57,13 +57,13 @@ O Agent OS é uma arquitetura modular para agentes de IA com governança formal,
 
 5. **Pipeline Controlado**: Memory → Skill → Rule → Agent com gates de risco
 
-6. **Right-Sized Process** (BMAD): Processo dimensionado à complexidade da tarefa
+6. **Right-Sized Process**: Processo dimensionado à complexidade da tarefa
 
 7. **Durable Context**: Decisões de produto/técnicas carregadas adiante
 
 8. **Specialized Perspectives**: PM, Architect, Dev, QA, SRE on-demand
 
-## Delivery Loop (BMAD)
+## Delivery Loop
 
 ```
 Clarify → Plan → Build → Verify → Learn

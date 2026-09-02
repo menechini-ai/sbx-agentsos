@@ -18,7 +18,7 @@ Agent OS é uma arquitetura modular de agentes de IA com governança formal, mem
 ### Concepts
 - [[agent-os-architecture]] - Arquitetura modular e hierarquia L0-L5
 - [[agent-os-governance]] - Sistema constitucional de governança
-- [[delivery-loop]] - Loop de delivery BMAD (Clarify→Plan→Build→Verify→Learn)
+- [[delivery-loop]] - Loop de delivery Agent OS (Clarify→Plan→Build→Verify→Learn)
 - [[portable-context]] - Contexto portátil entre sessões
 
 ### Guides

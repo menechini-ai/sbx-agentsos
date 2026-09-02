@@ -627,9 +627,9 @@ A camada específica do runtime deve ficar separada da arquitetura dos agentes.
 | [CLAW-HCG-Framework](https://github.com/sztomyan-dotcom/CLAW-HCG-Framework) | 4-layer guards, command hardening, gated evolution |
 | [PA-Agent](https://github.com/edmundpokuadu-eng/PA-Agent) | 3-tier hierarchy, commitment gates, agency problems |
 
-### 02.13. Delivery Loop (BMAD Integration)
+### 02.13. Delivery Loop (Agent OS Integration)
 
-O Agent OS adota o **BMAD Delivery Loop** como workflow padrão para execução de tarefas, garantindo processo right-sized (dimensionado à complexidade) e contexto durável.
+O Agent OS adota o **Agent OS Delivery Loop** como workflow padrão para execução de tarefas, garantindo processo right-sized (dimensionado à complexidade) e contexto durável.
 
 #### Loop Principal
 
