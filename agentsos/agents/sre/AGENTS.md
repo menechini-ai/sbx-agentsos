@@ -30,7 +30,7 @@
 - `session-handoff` - Continuidade entre sessões
 
 ### Skills Específicas (em `agents/sre/skills/`):
-- `iac-provisioning` - Infra provisioning via Bicep/Terraform
+- `resource-provisioning` - Infra provisioning via Bicep/Terraform
 - `pipeline-orchestration` - Orchestration de pipelines Azure DevOps
 - `slo-management` - Definição e management de SLOs/SLIs
 - `incident-response` - Criação de runbooks e hooks de resposta
@@ -51,7 +51,7 @@
 
 ## Consultas Relacionadas
 
-- `→ consultar skills/iac-provisioning/SKILL.md` para infra provisioning
+- `→ consultar skills/resource-provisioning/SKILL.md` para infra provisioning
 - `→ consultar skills/pipeline-yaml/SKILL.md` para pipeline creation
 - `→ consultar GOVERNANCE.md §01` para matriz de autorização completa
 - `→ consultar contracts/input/` e `contracts/output/` para envelopes de task

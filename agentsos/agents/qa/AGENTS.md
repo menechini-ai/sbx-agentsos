@@ -29,7 +29,7 @@
 - `session-handoff` - Continuidade entre sessões
 
 ### Skills Específicas (em `agents/qa/skills/`):
-- `test-planning` - Criação de planos e estratégias de teste
+- `qa-gate` - Criação de planos e estratégias de teste
 - `qa-gate` - Verificação de gate QA antes de handoff
 - `bug-triage` - Triagem e priorização de bugs
 - `slo-management` - Definição e management de SLOs/SLIs
@@ -48,7 +48,7 @@
 
 ## Consultas Relacionadas
 
-- `→ consultar skills/test-planning/SKILL.md` para procedimentos de test planning
+- `→ consultar skills/qa-gate/SKILL.md` para procedimentos de test planning
 - `→ consultar GOVERNANCE.md §01` para matriz de autorização completa
 - `→ consultar contracts/input/` e `contracts/output/` para envelopes de task
 - `→ consultar memory/candidates/` para padrões de qualidade detectados
